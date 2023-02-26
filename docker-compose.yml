@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  httpd:
+    build: docker/httpd
+    ports:
+      - "8000:80"
+    volumes:
+      - ./static:/usr/local/apache2/htdocs/static
+
+  postgres:
+    image: postgres:11  # Aurora Serverless v1
+    restart: always
+    environment:
+      TZ: Asia/Tokyo
+      POSTGRES_PASSWORD: postgres
+
+  app:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    environment:
+      SECRET_KEY: "django-insecure-7j*eti#tkj+$7nzk((v#9=utmi6^_r@^!17j-y8wt3)gm%cqgw"
+      STAGE: local
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgres
+    volumes:
+      - .:/app
+    depends_on:
+      - httpd
+      - postgres
+    command:
+      sh -c "
+        python manage.py collectstatic --no-input &&
+        gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --reload
+      "

@@ -1,2 +1,5 @@
 Django==4.1.7
 djangorestframework==3.14.0
+gunicorn
+uvicorn
+psycopg2-binary
