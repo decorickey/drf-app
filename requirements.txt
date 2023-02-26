@@ -3,3 +3,6 @@ djangorestframework==3.14.0
 gunicorn
 uvicorn
 psycopg2-binary
+django-allauth
+dj-rest-auth
+djangorestframework-simplejwt

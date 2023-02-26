@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from rest_framework.decorators import api_view
 from rest_framework.request import Request
@@ -30,4 +30,6 @@ def ping(request: Request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/ping/', ping),
+    path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
 ]
