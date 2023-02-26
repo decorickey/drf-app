@@ -1,5 +1,7 @@
 Django==4.1.7
+django-cors-headers
 djangorestframework==3.14.0
+djangorestframework-camel-case
 gunicorn
 uvicorn
 psycopg2-binary
