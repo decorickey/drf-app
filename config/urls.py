@@ -16,6 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from rest_framework.decorators import api_view
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
+
+
+@api_view(['GET'])
+def ping(request: Request):
+    return Response("Hello World", status=HTTP_200_OK)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/ping/', ping),
 ]
