@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     # my apps
     'user',
+    'bmonster',
 ]
 
 AUTH_USER_MODEL = 'user.User'

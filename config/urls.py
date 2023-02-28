@@ -30,6 +30,9 @@ def ping(request: Request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/ping/', ping),
-    path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls'))
+    # path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
+    # path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/auth/', include('dj_rest_auth.urls')),
+    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/bmonster/', include('bmonster.urls')),
 ]
