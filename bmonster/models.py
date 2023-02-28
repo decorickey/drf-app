@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.contrib.auth import settings
 
 
 class Performer(models.Model):
@@ -32,3 +33,17 @@ class Program(models.Model):
 
     def __str__(self):
         return f"{self.performer}:{self.vol}"
+
+
+class FavoritePerformer(models.Model):
+    class Meta:
+        db_table = "favorite_performer"
+        constraints = [
+            models.UniqueConstraint(fields=["user", "performer"], name='favorite_performer_u_idx_1'),
+        ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    performer = models.ForeignKey(Performer, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

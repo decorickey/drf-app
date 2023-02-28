@@ -172,6 +172,9 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
     ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
     'JSON_UNDERSCOREIZE': {
         # 'no_underscore_before_number': True,
         'ignore_keys': ('password1', 'password2'),
