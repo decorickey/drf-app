@@ -2,7 +2,7 @@ from django.core.validators import RegexValidator
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator, UniqueTogetherValidator
 
-from .models import FavoritePerformer, Performer, Program
+from .models import FavoritePerformer, FavoriteProgram, Performer, Program
 
 
 class PerformerSerializer(serializers.ModelSerializer):
@@ -61,6 +61,21 @@ class FavoritePerformerSerializer(serializers.ModelSerializer):
             UniqueTogetherValidator(
                 queryset=model.objects.all(),
                 fields=["user", "performer"],
+                message="registered",
+            ),
+        ]
+
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+
+class FavoriteProgramSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FavoriteProgram
+        fields = "__all__"
+        validators = [
+            UniqueTogetherValidator(
+                queryset=model.objects.all(),
+                fields=["user", "program"],
                 message="registered",
             ),
         ]

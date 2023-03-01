@@ -48,3 +48,18 @@ class FavoritePerformer(models.Model):
     comment = models.CharField(blank=True, max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class FavoriteProgram(models.Model):
+    class Meta:
+        db_table = "favorite_program"
+        constraints = [
+            models.UniqueConstraint(fields=["user", "program"], name='favorite_program_u_idx_1'),
+        ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    comment = models.CharField(blank=True, max_length=128)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

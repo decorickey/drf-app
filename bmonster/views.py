@@ -1,7 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 
-from .models import FavoritePerformer, Performer, Program
-from .serializers import FavoritePerformerSerializer, PerformerSerializer, ProgramSerializer
+from .models import FavoritePerformer, FavoriteProgram, Performer, Program
+from .serializers import (
+    FavoritePerformerSerializer, FavoriteProgramSerializer, PerformerSerializer, ProgramSerializer
+)
 
 
 class PerformerViewSet(ModelViewSet):
@@ -23,3 +25,10 @@ class FavoritePerformerViewSet(ModelViewSet):
 
     def get_queryset(self):
         return FavoritePerformer.objects.filter(user=self.request.user).order_by("created_at")
+
+
+class FavoriteProgramViewSet(ModelViewSet):
+    serializer_class = FavoriteProgramSerializer
+
+    def get_queryset(self):
+        return FavoriteProgram.objects.filter(user=self.request.user).order_by("created_at")
