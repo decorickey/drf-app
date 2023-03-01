@@ -27,7 +27,7 @@ class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     performer = models.ForeignKey(Performer, on_delete=models.CASCADE)
     vol = models.CharField(max_length=16)
-    old_vol = models.CharField(null=True, max_length=16)
+    old_vol = models.CharField(blank=True, max_length=16)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -45,5 +45,6 @@ class FavoritePerformer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     performer = models.ForeignKey(Performer, on_delete=models.CASCADE)
+    comment = models.CharField(blank=True, max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
