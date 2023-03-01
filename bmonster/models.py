@@ -9,7 +9,7 @@ class Performer(models.Model):
         db_table = "performer"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(unique=True, db_index=True, max_length=16)
+    name = models.CharField(unique=True, max_length=16)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
