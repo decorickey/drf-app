@@ -205,6 +205,9 @@ ACCOUNT_LOGOUT_ON_GET = True
 # https://dj-rest-auth.readthedocs.io/en/latest/index.html
 REST_AUTH = {
     'USE_JWT': True,
+    # 'SESSION_LOGIN': False,
     'JWT_AUTH_COOKIE': 'my-app-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+    'JWT_AUTH_SECURE': True,
+    'JWT_AUTH_HTTPONLY': True,
 }
