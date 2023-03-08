@@ -23,22 +23,22 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def ping(request: Request):
     return Response("Hello World", status=HTTP_200_OK)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/ping/', ping),
-    path('api/auth/', include('dj_rest_auth.urls')),
-    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('api/bmonster/', include('bmonster.urls')),
+    path("admin/", admin.site.urls),
+    path("api/ping/", ping),
+    path("api/auth/", include("dj_rest_auth.urls")),
+    path("api/auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("api/bmonster/", include("bmonster.urls")),
 ]
 
 if settings.DEBUG:
     urlpatterns += [
-        path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-        path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-        path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+        path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+        path("api/schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+        path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     ]

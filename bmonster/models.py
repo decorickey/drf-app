@@ -21,7 +21,7 @@ class Program(models.Model):
     class Meta:
         db_table = "program"
         constraints = [
-            models.UniqueConstraint(fields=["performer", "vol"], name='program_u_idx_1'),
+            models.UniqueConstraint(fields=["performer", "vol"], name="program_u_idx_1"),
         ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -39,7 +39,7 @@ class FavoritePerformer(models.Model):
     class Meta:
         db_table = "favorite_performer"
         constraints = [
-            models.UniqueConstraint(fields=["user", "performer"], name='favorite_performer_u_idx_1'),
+            models.UniqueConstraint(fields=["user", "performer"], name="favorite_performer_u_idx_1"),
         ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -54,7 +54,7 @@ class FavoriteProgram(models.Model):
     class Meta:
         db_table = "favorite_program"
         constraints = [
-            models.UniqueConstraint(fields=["user", "program"], name='favorite_program_u_idx_1'),
+            models.UniqueConstraint(fields=["user", "program"], name="favorite_program_u_idx_1"),
         ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

@@ -11,6 +11,4 @@ router.register("programs", ProgramViewSet, basename="program")
 router.register("favorite/performers", FavoritePerformerViewSet, basename="favorite_performer")
 router.register("favorite/programs", FavoriteProgramViewSet, basename="favorite_program")
 
-urlpatterns = [
-    path('', include(router.urls))
-]
+urlpatterns = [path("", include(router.urls))]

@@ -35,17 +35,13 @@ class ProgramSerializer(serializers.ModelSerializer):
         ]
         extra_kwargs = {
             "vol": {
-                "validators": [
-                    RegexValidator(regex=r"^[a-zA-Z0-9.-]*$", message="invalid input")
-                ],
+                "validators": [RegexValidator(regex=r"^[a-zA-Z0-9.-]*$", message="invalid input")],
                 "error_messages": {
                     "max_length": "too long",
                 },
             },
             "old_vol": {
-                "validators": [
-                    RegexValidator(regex=r"^[a-zA-Z0-9.-]*$", message="invalid input")
-                ],
+                "validators": [RegexValidator(regex=r"^[a-zA-Z0-9.-]*$", message="invalid input")],
                 "error_messages": {
                     "max_length": "too long",
                 },

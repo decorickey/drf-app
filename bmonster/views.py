@@ -1,9 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 
 from .models import FavoritePerformer, FavoriteProgram, Performer, Program
-from .serializers import (
-    FavoritePerformerSerializer, FavoriteProgramSerializer, PerformerSerializer, ProgramSerializer
-)
+from .serializers import FavoritePerformerSerializer, FavoriteProgramSerializer, PerformerSerializer, ProgramSerializer
 
 
 class PerformerViewSet(ModelViewSet):
