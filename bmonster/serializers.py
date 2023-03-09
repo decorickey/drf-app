@@ -1,4 +1,4 @@
-from django.core.validators import RegexValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator, UniqueTogetherValidator
 
@@ -60,6 +60,14 @@ class FavoritePerformerSerializer(serializers.ModelSerializer):
                 message="registered",
             ),
         ]
+        extra_kwargs = {
+            "star": {
+                "validators": [
+                    MaxValueValidator(5, message="value <= 5"),
+                    MinValueValidator(1, message="1 <= value"),
+                ],
+            },
+        }
 
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
@@ -75,5 +83,13 @@ class FavoriteProgramSerializer(serializers.ModelSerializer):
                 message="registered",
             ),
         ]
+        extra_kwargs = {
+            "star": {
+                "validators": [
+                    MaxValueValidator(5, message="value <= 5"),
+                    MinValueValidator(1, message="1 <= value"),
+                ],
+            },
+        }
 
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
