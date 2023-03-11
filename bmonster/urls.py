@@ -6,9 +6,9 @@ from .views import FavoritePerformerViewSet, FavoriteProgramViewSet, PerformerVi
 app_name = "bmonster"
 
 router = routers.DefaultRouter()
-router.register("performers", PerformerViewSet, basename="performer")
-router.register("programs", ProgramViewSet, basename="program")
-router.register("favorite/performers", FavoritePerformerViewSet, basename="favorite_performer")
-router.register("favorite/programs", FavoriteProgramViewSet, basename="favorite_program")
+router.register("performers", PerformerViewSet, basename="Performer")
+router.register("programs", ProgramViewSet, basename="Program")
+router.register("favorite/performers", FavoritePerformerViewSet, basename="FavoritePerformer")
+router.register("favorite/programs", FavoriteProgramViewSet, basename="FavoriteProgram")
 
 urlpatterns = [path("", include(router.urls))]
