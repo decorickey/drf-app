@@ -5,8 +5,6 @@ services:
     build: docker/httpd
     ports:
       - "8000:80"
-    volumes:
-      - ./static:/usr/local/apache2/htdocs/static
 
   postgres:
     image: postgres:11  # Aurora Serverless v1
@@ -33,14 +31,7 @@ services:
     depends_on:
       - httpd
       - postgres
-    command:
-      # 本稼働はGunicorn
-#      sh -c "
-#        python manage.py collectstatic --no-input &&
-#        gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
-#      "
-      # 開発はUvicorn(for Reload)
-      sh -c "
-        python manage.py collectstatic --no-input &&
-        uvicorn config.asgi:application --host 0.0.0.0 --port 8000 --reload
-      "
+    # 開発はUvicorn(for Reload)
+    command: uvicorn config.asgi:application --host 0.0.0.0 --port 8000 --reload
+    # 本稼働はGunicorn
+#    command: gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000

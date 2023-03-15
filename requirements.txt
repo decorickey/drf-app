@@ -1,12 +1,19 @@
-black
+# Django関連
 Django==4.1.7
+django-allauth
 django-cors-headers
-djangorestframework==3.14.0
-djangorestframework-camel-case
-drf-spectacular
+psycopg2-binary
 gunicorn
 uvicorn
-psycopg2-binary
-django-allauth
-dj-rest-auth
+whitenoise
+
+# DRF関連
+djangorestframework==3.14.0
+djangorestframework-camel-case
 djangorestframework-simplejwt
+dj-rest-auth
+drf-spectacular
+
+# その他
+black
+pylint
